@@ -3,11 +3,14 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "/_next/image", "/_next/static"]; // Define your open routes here
+const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "/_next"]; // Define your open routes here
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-console.log(pathname);
+
+  if (pathname.endsWith(".jpg") || pathname.endsWith(".png")) {
+    return NextResponse.next();
+  }
 
   const token = await getToken({ req });
   if(token) {

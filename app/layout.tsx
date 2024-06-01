@@ -11,6 +11,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "eZbuy Shopping",
   description: "eZbuy Online Shopping",
+  metadataBase: new URL("https://ezbuy-blue.vercel.app"),
   openGraph: {
     title: "eZbuy Shopping",
     description: "eZbuy Online Shopping",
