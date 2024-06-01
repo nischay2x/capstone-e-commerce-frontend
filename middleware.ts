@@ -3,15 +3,23 @@
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "_next/image", "_next/static"]; // Define your open routes here
+const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "/_next/image", "/_next/static"]; // Define your open routes here
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
+console.log(pathname);
 
   const token = await getToken({ req });
+  if(token) {
+    const { role } = token as { role: "ADMIN" | "SELLER" | "USER" };
+    if(pathname === "/" && role !== "USER"){
+        return NextResponse.redirect(new URL(`/${role.toLowerCase()}`, req.url));
+    }
+  }
+
   if(pathname === "/"){
     return NextResponse.next();
-  }
+}
 
   // Allow open routes without authentication
   if (OPEN_ROUTES.some(route => pathname.startsWith(route))) {
