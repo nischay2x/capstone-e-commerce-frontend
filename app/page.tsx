@@ -18,7 +18,7 @@ export default function Landing() {
           <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
             About
           </Link>
-          <Link className="text-sm font-medium hover:underline underline-offset-4" href="#">
+          <Link className="text-sm font-medium hover:underline underline-offset-4" href="/support">
             Contact
           </Link>
           <Suspense fallback={null}>

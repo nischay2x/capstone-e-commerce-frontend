@@ -6,6 +6,7 @@ import AddToCartButton from "../AddToCartButton";
 import type { Metadata, ResolvingMetadata } from 'next';
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { getServerSession } from "next-auth";
 
 type Product = {
     id: number;
@@ -68,6 +69,7 @@ export async function generateMetadata(
 export default async function ProductById({ params }: PageProps) {
     const d = await getData(params.id);
     const data = d?.product;
+    const session = await getServerSession();
 
     return data && (
         <main className="p-4 lg:p-8 h-svh">
@@ -91,7 +93,10 @@ export default async function ProductById({ params }: PageProps) {
                             <div className="text-3xl font-bold">{formatToINR(data.price)}</div>
                             <div className="px-2 py-1 w-fit border rounded-md text-muted-foreground">{data.category}</div>
                             <div className="w-fit">
-                                <AddToCartButton text="Add to Cart" product={data} />
+                                {
+                                    session &&
+                                    <AddToCartButton text="Add to Cart" product={data} />
+                                }
                             </div>
                             <div className="flex flex-col mt-auto text-sm">
                                 <span className="block font-semibold">Sold By:</span>
