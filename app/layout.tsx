@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     siteName: "eZbuy Shopping",
     images: [
       {
-        url: "https://ezbuy.vercel.app/og.png",
+        url: "/og.png",
         width: 1200,
         height: 630,
       },

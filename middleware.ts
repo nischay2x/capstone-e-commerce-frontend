@@ -1,13 +1,14 @@
-// middleware.js
+
 
 import { getToken } from 'next-auth/jwt';
 import { NextRequest, NextResponse } from 'next/server';
 
-const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "/shop"]; // Define your open routes here
+const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "_next/image", "_next/static"]; // Define your open routes here
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  
+
+  const token = await getToken({ req });
   if(pathname === "/"){
     return NextResponse.next();
   }
@@ -17,18 +18,34 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  const token = await getToken({ req });
+  if(pathname.startsWith("/shop")) {
+    if(!token) {
+        return NextResponse.next();
+    }
+    const { role } = token as { role: "ADMIN" | "SELLER" | "USER" };
+    if( role !== "USER") {
+        return NextResponse.redirect(new URL(`/${role.toLowerCase()}`, req.url));
+    }
+  }
 
   // If no token, redirect to login page
   if (!token) {
     return NextResponse.redirect(new URL('/auth/login', req.url));
   }
 
-  const { role } = token;
+  const { role } = token as { role: "ADMIN" | "SELLER" | "USER" };
+
+  if(role === "ADMIN" && !pathname.startsWith('/admin')) {
+    return NextResponse.redirect(new URL('/admin', req.url));
+  }
 
   // Role-based path restrictions
   if (role === 'ADMIN' && pathname.startsWith('/admin')) {
     return NextResponse.next();
+  }
+
+  if (role === 'SELLER' && !pathname.startsWith('/seller')) {
+    return NextResponse.redirect(new URL('/seller', req.url));
   }
 
   if (role === 'SELLER' && pathname.startsWith('/seller')) {

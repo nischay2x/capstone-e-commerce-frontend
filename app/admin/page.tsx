@@ -8,7 +8,7 @@ import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title: "ADMIN | eZbuy",
+    title: "Admin | eZbuy",
     description: "Admin Control Panel"
 }
 
