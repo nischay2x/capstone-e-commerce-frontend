@@ -18,16 +18,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useEffect } from "react";
-import { Metadata } from "next";
 
-export const metadata: Metadata = {
-    title: "Login | eZbuy Shopping",
-    description: "Login to your account",
-    openGraph: {
-        title: "Login | eZbuy Shopping",
-        description: "Login to your account",
-    },
-}
+
 
 const formSchema = z.object({
     email: z.string().email({ message: "Email is required!" }),
