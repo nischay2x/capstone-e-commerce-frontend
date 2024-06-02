@@ -1,33 +1,31 @@
-import { getToken } from 'next-auth/jwt';
-import { MiddlewareConfig, NextRequest, NextResponse } from 'next/server';
+import { MiddlewareConfig} from 'next/server';
+import { withAuth } from "next-auth/middleware"
 
+export default withAuth({
+  callbacks: {
+    authorized: ({ req, token }) => {
+      const { pathname } = req.nextUrl;
 
-export async function middleware(req: NextRequest) {
-  const { pathname } = req.nextUrl;
+      if(!token) return false;
 
-  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-  
-  // If no token, redirect to login page
-  if (!token) {
-    return NextResponse.redirect(new URL('/auth/login', req.url));
+      const role = token.role;
+      if (role === "ADMIN" && !pathname.startsWith('/admin')) {
+        return false;
+      }
+
+      if (role === 'SELLER' && !pathname.startsWith('/seller')) {
+        return false;
+      }
+
+      if (role === 'USER' && (pathname.startsWith('/admin') || pathname.startsWith('/seller'))) {
+        return false;
+      }
+
+      return true;
+    }
   }
+})
 
-  const { role } = token;
-
-  if (role === "ADMIN" && !pathname.startsWith('/admin')) {
-    return NextResponse.redirect(new URL('/admin', req.url));
-  }
-
-  if (role === 'SELLER' && !pathname.startsWith('/seller')) {
-    return NextResponse.redirect(new URL('/seller', req.url));
-  }
-
-  if (role === 'USER' && (pathname.startsWith('/admin') || pathname.startsWith('/seller'))) {
-    return NextResponse.redirect(new URL('/', req.url));
-  }
-
-  return NextResponse.next();
-}
 
 export const config: MiddlewareConfig = {
   matcher: [
