@@ -27,7 +27,13 @@ export default function Landing() {
         </nav>
       </header>
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full min-h-screen bg-zinc-50 grid">
+          <div className="m-auto max-w-full px-2">
+            <Image priority alt="eZbuy Logo" src="/eZbuy-black.svg" width={700} height={40} />
+            <div className="text-center font-bold text-2xl">Shop. Save. Smile</div>
+          </div>
+        </section>
+        <section className="w-full py-12 md:py-24 lg:py-32 min-h-screen">
           <div className="container grid items-center gap-6 px-4 md:px-6 lg:grid-cols-2 lg:gap-10">
             <Image
               priority
@@ -58,7 +64,7 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-white dark:bg-gray-800">
+        <section className="w-full py-12 md:py-24 lg:py-32 flex flex-col justify-center bg-white dark:bg-gray-800 min-h-screen">
           <div className="container grid items-center justify-center gap-4 px-4 md:px-6 lg:gap-10">
             <div className="space-y-3 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
@@ -93,12 +99,12 @@ export default function Landing() {
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32">
+        <section className="w-full py-12 md:py-24 lg:py-32 flex flex-col justify-center min-h-screen">
           <div className="container grid items-center justify-center gap-4 px-4 md:px-6 lg:gap-10">
             <div className="space-y-3 text-center">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">What Our Customers Say</h2>
               <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                Hear from real customers about their experiences with Acme Ecommerce.
+                Hear from real customers about their experiences with eZbuy.
               </p>
             </div>
             <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 lg:gap-12">
@@ -115,7 +121,7 @@ export default function Landing() {
                     </div>
                   </div>
                   <p className="text-gray-500 dark:text-gray-400">
-                    &quot;I&apos;ve been shopping with Acme Ecommerce for years and I&apos;m always impressed by the quality of their
+                    &quot;I&apos;ve been shopping with AeZbuy for years and I&apos;m always impressed by the quality of their
                     products and the excellent customer service. Highly recommended!&quot;
                   </p>
                 </CardContent>
@@ -133,7 +139,7 @@ export default function Landing() {
                     </div>
                   </div>
                   <p className="text-gray-500 dark:text-gray-400">
-                    &quot;I love the wide selection of products on Acme Ecommerce. I always find exactly what I&apos;m looking
+                    &quot;I love the wide selection of products on eZbuy. I always find exactly what I&apos;m looking
                     for, and the prices are unbeatable. Highly recommend!&quot;
                   </p>
                 </CardContent>
@@ -151,7 +157,7 @@ export default function Landing() {
                     </div>
                   </div>
                   <p className="text-gray-500 dark:text-gray-400">
-                    &quot;I&apos;ve been shopping with Acme Ecommerce for years and I&apos;m always impressed by the quality of their
+                    &quot;I&apos;ve been shopping with eZbuy for years and I&apos;m always impressed by the quality of their
                     products and the excellent customer service. Highly recommended!&quot;
                   </p>
                 </CardContent>
