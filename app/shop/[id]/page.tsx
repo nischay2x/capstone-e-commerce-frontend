@@ -79,7 +79,7 @@ export default async function ProductById({ params }: PageProps) {
                     <CardDescription>{data.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="flex gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="aspect-square p-2 relative group border rounded-lg shadow-md">
                             <Image
                                 alt={data.name ?? "Product Image"}
