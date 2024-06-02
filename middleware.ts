@@ -6,6 +6,11 @@ export default withAuth({
     authorized: ({ req, token }) => {
       const { pathname } = req.nextUrl;
 
+      console.log("secret", process.env.NEXTAUTH_SECRET);
+      
+      console.log("pathname", pathname);
+      console.log("token", token);
+      
       if(!token) return false;
 
       const role = token.role;
