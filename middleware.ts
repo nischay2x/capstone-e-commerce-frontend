@@ -1,20 +1,10 @@
 import { MiddlewareConfig} from 'next/server';
 import { withAuth } from "next-auth/middleware"
-import { getToken } from 'next-auth/jwt';
 
 export default withAuth({
   callbacks: {
     authorized: async ({ req, token }) => {
       const { pathname } = req.nextUrl;
-
-      const t = await getToken({ secret: process.env.NEXTAUTH_SECRET, req });
-      console.log("t", t);
-      
-
-      console.log("secret", process.env.NEXTAUTH_SECRET);
-      
-      console.log("pathname", pathname);
-      console.log("token", token);
       
       if(!token) return false;
 
