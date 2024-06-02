@@ -1,11 +1,25 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import authOptions from "../api/auth/[...nextauth]/authOptions";
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+
+    const session = await getServerSession(authOptions);
+
+    if(session) {
+        if(session.user.role === "ADMIN") {
+            redirect("/admin")
+        } else if (session.user.role === "SELLER") {
+            redirect("/seller")
+        }
+        redirect("/shop")
+    }
+
     return (
         <main className="h-screen flex items-center justify-center w-full bg-zinc-200">
             <Card className="w-full max-w-md">

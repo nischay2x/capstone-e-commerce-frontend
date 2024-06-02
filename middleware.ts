@@ -1,29 +1,12 @@
 
 
 import { getToken } from 'next-auth/jwt';
-import { NextRequest, NextResponse } from 'next/server';
-
-const OPEN_ROUTES = ['/public', '/api/auth', '/auth', "/support", "/_next"]; // Define your open routes here
+import { MiddlewareConfig, NextRequest, NextResponse } from 'next/server';
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  console.log("middleware: ", pathname);
-
-
-  if (pathname.endsWith(".jpg") || pathname.endsWith(".png") || OPEN_ROUTES.some(route => pathname.startsWith(route))) {
-    return NextResponse.next();
-  }
-
   const token = await getToken({ req }) as { role: "ADMIN" | "SELLER" | "USER" } | null;
-
-  if (pathname === "/" || pathname.startsWith("/shop")) {
-    if (token && token.role !== "USER") {
-      return NextResponse.redirect(new URL(`/${token.role.toLowerCase()}`, req.url));
-    }
-
-    return NextResponse.next();
-  }
 
   // If no token, redirect to login page
   if (!token) {
@@ -47,9 +30,13 @@ export async function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = {
+export const config: MiddlewareConfig = {
   matcher: [
-    // Match all paths to apply the middleware
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/admin/:path*',
+    '/seller/:path*',
+    '/cart/:path*',
+    '/checkout/:path*',
+    '/orders/:path*',
+    '/thank-you',
   ],
 };

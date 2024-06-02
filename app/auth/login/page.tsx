@@ -13,11 +13,10 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useEffect } from "react";
 
 
 
@@ -39,23 +38,12 @@ export default function LoginForm() {
 
     const { toast } = useToast();
     const { push } = useRouter();
-    const { data: session } = useSession();
-
-    useEffect(() => {
-        if(session?.user){
-            switch(session.user.role) {
-                case "ADMIN": push("/admin"); break;
-                case "SELLER": push("/seller"); break;
-                default: push("/shop");
-            }
-        }
-    }, [session, push])
 
     async function onSubmit(values: FormValues) {
         const res = await signIn("credentials", { ...values, redirect: false });
         
         if (res?.ok) {
-            push("/");
+            push("/shop");
         } else {
             toast({
                 variant: "destructive",
