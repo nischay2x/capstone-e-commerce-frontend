@@ -1,27 +1,11 @@
-
-
 import { getToken } from 'next-auth/jwt';
 import { MiddlewareConfig, NextRequest, NextResponse } from 'next/server';
-// import { withAuth }from "next-auth/middleware";
 
-// export default withAuth({
-//   callbacks: {
-//     authorized({ req, token }) {
-//       if(token) {
-
-//         return true;
-//       } else return false;
-//     }
-//   }
-// })
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  const token = await getToken({ req }) as { role: "ADMIN" | "SELLER" | "USER" } | null;
-
-  console.log("Middleware: ", pathname);
-  console.log("Token: ", token);
+  const token = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
   
   // If no token, redirect to login page
   if (!token) {
