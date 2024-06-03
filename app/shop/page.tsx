@@ -22,7 +22,7 @@ export default async function ProductHome({ searchParams }: PageProps) {
     const query = searchParams?.query || '';
     const currentPage = Number(searchParams?.page) || 1;
     return (
-        <main className='p-4 lg:p-8'>
+        <main className='md:p-4 lg:p-8'>
             <div className="container">
 
             <div className="my-4 flex w-full md:w-1/2 lg:w-1/4 xl:w-1/3 md:mt-8">

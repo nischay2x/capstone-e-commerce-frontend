@@ -72,7 +72,7 @@ export default async function ProductById({ params }: PageProps) {
     const session = await getServerSession();
 
     return data && (
-        <main className="p-4 lg:p-8 h-svh">
+        <main className="md:p-4 lg:p-8 h-svh">
             <Card>
                 <CardHeader>
                     <CardTitle>{data.name}</CardTitle>

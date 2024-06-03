@@ -54,7 +54,7 @@ export default async function OrderById({ params }: PageProps) {
     }
 
     return (
-        <main className="p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh">
+        <main className="md:p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh">
             <Card  id="print-this" className="print:w-full print:min-h-screen">
                 <CardHeader>
                     <CardTitle>Order #{data?.id}</CardTitle>

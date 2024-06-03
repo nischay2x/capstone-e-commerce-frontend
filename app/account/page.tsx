@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 
 export default function Account() {
     return (
-        <main className="p-4 lg:p-8 h-svh">
+        <main className="md:p-4 lg:p-8 h-svh">
             <Card>
                 <CardHeader>
                     <CardTitle>Account</CardTitle>

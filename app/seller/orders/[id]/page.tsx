@@ -36,7 +36,7 @@ export default async function SellerOrderById({ params }: PageProps) {
     const total: number = data?.items.map(d => d.quantity * d.product.price).reduce((a,b) => a+b, 0) ?? 0;
 
     return (
-        <main className="p-4 dark:bg-gray-950 lg:p-8 h-svh">
+        <main className="md:p-4 dark:bg-gray-950 lg:p-8 h-svh">
             <Card id="print-this" className="print:w-full print:min-h-screen">
                 <CardHeader>
                     <CardTitle>Order #{data?.id}</CardTitle>

@@ -37,7 +37,7 @@ export default async function CustomerOrders({ searchParams }: PageProps) {
     const data = await getData({ searchParams });
 
     return (
-        <main className="p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh">
+        <main className="md:p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh">
             <Card>
                 <CardHeader>
                     <CardTitle>Orders</CardTitle>

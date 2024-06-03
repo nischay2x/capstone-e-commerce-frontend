@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 export default function OrdersLoading() {
     return (
-        <main className="p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh">
+        <main className="md:p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh">
             <Card>
                 <CardHeader>
                     <CardTitle><Skeleton className="h-8 w-[100px]" /></CardTitle>

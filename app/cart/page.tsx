@@ -17,7 +17,7 @@ export default function CartPage() {
     const router = useRouter();
 
     return (
-        <main className='p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh'>
+        <main className='md:p-4 bg-gray-100 dark:bg-gray-950 lg:p-8 h-svh'>
             <Card>
                 <CardHeader>
                     <CardTitle>Shopping Cart</CardTitle>

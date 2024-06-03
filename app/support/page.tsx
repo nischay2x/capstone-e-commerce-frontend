@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function Support() {
     return (
-            <main className="p-4">
+            <main className="md:p-4">
                 <Card>
                     <CardHeader>
                         <CardTitle>Contact Support</CardTitle>

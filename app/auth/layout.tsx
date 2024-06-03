@@ -21,7 +21,7 @@ export default async function RootLayout({
     }
 
     return (
-        <main className="h-screen flex items-center justify-center w-full bg-zinc-200">
+        <main className="h-screen p-4 flex items-center justify-center w-full bg-zinc-200">
             <Card className="w-full max-w-md">
                 <CardHeader className="align-center">
                     <svg width="150" height="47" viewBox="0 0 317 98" fill="none" xmlns="http://www.w3.org/2000/svg">
