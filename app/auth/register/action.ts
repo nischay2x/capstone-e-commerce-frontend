@@ -1,3 +1,4 @@
+"use server";
 import axiosErrorFormatter from "@/lib/axiosErrorFormattor";
 import fetcher from "@/lib/fetcher";
 
